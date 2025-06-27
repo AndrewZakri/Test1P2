@@ -37,6 +37,14 @@ col1.metric("Total Applications", f"{filtered_df['Applications'].sum():,}")
 col2.metric("Total Admitted", f"{filtered_df['Admitted'].sum():,}")
 col3.metric("Total Enrolled", f"{filtered_df['Enrolled'].sum():,}")
 
+st.write("Total Applications, Total Admitted, Total Enrolled:")
+
+st.write("Aggregate the data for the years examined.  The user has the ability to filter by both Years and Term.  A single Year can be selected, or any combination of multiple years.  The user can also select all terms, or specify Spring or Fall.  The default filter is all Years and all Terms.")
+
+st.write("Conclusion:")
+
+st.write("Applicants, admitted and enrolled students have gradually increased over the ten years examined.")
+
 # PLOT 1
 # Create Retention Rate Trends Over Time
 st.subheader("Retention Rate Over Time")
@@ -46,13 +54,13 @@ sns.lineplot(data=retention_trend, x='Year', y='Retention_Rate_(%)', marker='o',
 ax1.set_ylabel("Retention Rate (%)")
 st.pyplot(fig1)
 
-st.write("Total Applications, Total Admitted, Total Enrolled:")
+st.write("Retention Rate Over Time:")
 
-st.write("Aggregate the data for the years examined.  The user has the ability to filter by both Years and Term.  A single Year can be selected, or any combination of multiple years.  The user can also select all terms, or specify Spring or Fall.  The default filter is all Years and all Terms.")
+st.write("The retention rate has fluctuated over the tens years examined.  Initially, and in the first year examed, the retention rate was at its lowest point, 85%.  In the four years following 2015, the retention rate began to trend upward.  However, another low point occurs in 2020 as the retention rate falls to 85%.  Again, in the four years following 2020, retention rates trend upward, but unlike in the period from 2015-2019, retention increases by 1% each year.  Filters apply to the plot.")
 
 st.write("Conclusion:")
 
-st.write("Applicants, admitted and enrolled students have gradually increased over the ten years examined.")
+st.write("Retention rates have steadily increased in recent years, implying students prefer to remain enrolled in the university.")
 
 
 # PLOT 2

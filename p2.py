@@ -68,14 +68,19 @@ if selected_term == 'All':
     # Normalize term values
     filtered_df['Term'] = filtered_df['Term'].str.strip().str.capitalize()
 
-    # Group and plot
+    # Group enrollment by Year and Term
     term_trend = filtered_df.groupby(['Year', 'Term'])['Enrolled'].sum().reset_index()
 
-    fig4, ax4 = plt.subplots(figsize=(10, 4))
-    sns.lineplot(data=term_trend, x='Year', y='Enrolled', hue='Term', marker='o', ax=ax4)
+    # Create a bar plot
+    fig4, ax4 = plt.subplots(figsize=(10, 5))
+    sns.barplot(data=term_trend, x='Year', y='Enrolled', hue='Term', ax=ax4)
+
+    # Formatting
     ax4.set_title("Enrollment Trends by Term")
     ax4.set_ylabel("Enrolled Students")
     ax4.set_xlabel("Year")
+    ax4.tick_params(axis='x', rotation=45)
+
     st.pyplot(fig4)
 
 # Create trends between departments, retention rates and satisfaction levels

@@ -34,6 +34,7 @@ col1.metric("Total Applications", f"{filtered_df['Applications'].sum():,}")
 col2.metric("Total Admitted", f"{filtered_df['Admitted'].sum():,}")
 col3.metric("Total Enrolled", f"{filtered_df['Enrolled'].sum():,}")
 
+# PLOT 1
 # Create Retention Rate Trends Over Time
 st.subheader("Retention Rate Over Time")
 retention_trend = filtered_df.groupby('Year')['Retention_Rate_(%)'].mean().reset_index()
@@ -42,6 +43,7 @@ sns.lineplot(data=retention_trend, x='Year', y='Retention_Rate_(%)', marker='o',
 ax1.set_ylabel("Retention Rate (%)")
 st.pyplot(fig1)
 
+# PLOT 2
 # Create Student Satisfaction Scores Over the Years
 st.subheader("Student Satisfaction Over Time")
 satisfaction_trend = filtered_df.groupby('Year')['Student_Satisfaction_(%)'].mean().reset_index()
@@ -50,6 +52,7 @@ sns.barplot(data=satisfaction_trend, x='Year', y='Student_Satisfaction_(%)', pal
 ax2.set_ylabel("Satisfaction (%)")
 st.pyplot(fig2)
 
+# PLOT 3
 # Create Enrollment breakdown by department (Engineering, Business, Art & Science
 st.subheader("Departmental Enrollment Breakdown")
 dept_enroll = filtered_df[['Engineering_Enrolled', 'Business_Enrolled', 'Arts_Enrolled', 'Science_Enrolled']].sum()
@@ -61,34 +64,7 @@ fig3, ax3 = plt.subplots()
 sns.barplot(data=dept_df, x='Department', y='Enrolled', palette='Set2', ax=ax3)
 st.pyplot(fig3)
 
-# Create Comparison between Spring vs Fall term trends
-
-# Normalize term values
-df['Term'] = df['Term'].str.strip().str.capitalize()
-
-# Sort years (optional but cleaner)
-df['Year'] = df['Year'].astype(int)
-df = df.sort_values(by=['Year', 'Term'])
-
-# Filter if needed — for now, plot all
-st.subheader("Spring vs Fall Enrollment Over Time")
-
-# Group and aggregate
-term_trend = df.groupby(['Year', 'Term'])['Enrolled'].sum().reset_index()
-
-# Bar chart
-fig4, ax = plt.subplots(figsize=(10, 5))
-sns.barplot(data=term_trend, x='Year', y='Enrolled', hue='Term', ax=ax)
-
-# Labels and formatting
-ax.set_title("Enrollment Trends by Term")
-ax.set_ylabel("Number of Enrolled Students")
-ax.set_xlabel("Year")
-ax.tick_params(axis='x', rotation=45)
-
-# Display in Streamlit
-st.pyplot(fig4)
-
+# PLOT 4
 # Create trends between departments, retention rates and satisfaction levels
 st.subheader("Departmental Comparison: Retention vs. Satisfaction")
 
@@ -129,3 +105,30 @@ ax5.set_xlabel("Retention Score (Weighted)")
 ax5.set_ylabel("Satisfaction Score (Weighted)")
 ax5.set_title("Retention vs. Satisfaction by Department")
 st.pyplot(fig5)
+
+# PLOT 5
+# Create Comparison between Spring vs Fall term trends
+
+df['Term'] = df['Term'].str.strip().str.capitalize()
+
+# Sort years
+df['Year'] = df['Year'].astype(int)
+df = df.sort_values(by=['Year', 'Term'])
+
+st.subheader("Spring vs Fall Enrollment Over Time")
+
+# Group and aggregate
+term_trend = df.groupby(['Year', 'Term'])['Enrolled'].sum().reset_index()
+
+# Bar chart
+fig4, ax = plt.subplots(figsize=(10, 5))
+sns.barplot(data=term_trend, x='Year', y='Enrolled', hue='Term', ax=ax)
+
+# Labels and formatting
+ax.set_title("Enrollment Trends by Term")
+ax.set_ylabel("Number of Enrolled Students")
+ax.set_xlabel("Year")
+ax.tick_params(axis='x', rotation=45)
+
+# Display in Streamlit
+st.pyplot(fig4)

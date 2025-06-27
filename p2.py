@@ -5,7 +5,7 @@ import seaborn as sns
 
 # Label Dashboard and configure layout
 st.title("Test 2, Problem 2")
-st.subheader("University Student Dashboard")
+st.title("University Student Dashboard")
 
 # Load the provided CSV for problem 2
 df = pd.read_csv("university_student_dashboard_data.csv")

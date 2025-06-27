@@ -46,6 +46,15 @@ sns.lineplot(data=retention_trend, x='Year', y='Retention_Rate_(%)', marker='o',
 ax1.set_ylabel("Retention Rate (%)")
 st.pyplot(fig1)
 
+st.write("Total Applications, Total Admitted, Total Enrolled:")
+
+st.write("Aggregate the data for the years examined.  The user has the ability to filter by both Years and Term.  A single Year can be selected, or any combination of multiple years.  The user can also select all terms, or specify Spring or Fall.  The default filter is all Years and all Terms.")
+
+st.write("Conclusion:")
+
+st.write("Applicants, admitted and enrolled students have gradually increased over the ten years examined.")
+
+
 # PLOT 2
 # Create Student Satisfaction Scores Over the Years
 st.subheader("Student Satisfaction Over Time")

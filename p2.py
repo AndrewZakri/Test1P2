@@ -72,6 +72,14 @@ sns.barplot(data=satisfaction_trend, x='Year', y='Student_Satisfaction_(%)', pal
 ax2.set_ylabel("Satisfaction (%)")
 st.pyplot(fig2)
 
+st.write("Student Satisfaction Over Time:")
+
+st.write("The student satisfaction percent is trending upward, as there is a steady increase from 2015 to 2024.  Policies instituted by the university to retain students have been successful. Filters apply to the plot.")
+
+st.write("Conclusion:")
+
+st.write("The university should continue with its current programs/policies on student retention and consider new options to maintain or increase satisfaction.")
+
 # PLOT 3
 # Create Enrollment breakdown by department (Engineering, Business, Art & Science
 st.subheader("Departmental Enrollment Breakdown")
@@ -83,6 +91,14 @@ dept_df['Department'] = dept_df['Department'].str.replace("_Enrolled", "")
 fig3, ax3 = plt.subplots()
 sns.barplot(data=dept_df, x='Department', y='Enrolled', palette='Set2', ax=ax3)
 st.pyplot(fig3)
+
+st.write("Department Enrollment:")
+
+st.write("Total enrollment broken down by the four university departments: Engineering, Business, Arts & Science.  The default displays data for all years and all terms.  However, if we examine individual years, and one department is underperforming.  Engineering, Business and Arts have steadily increased enrollment over the ten year period.  Science had consistent enrollment for the first few years, and achieved a high of 130 students in each term of 2020.  Unfortunately, there has been a decline in enrollment in the following years, and the department has reached a low point of 100 students in each term of 2024.Filters apply to the plot.")
+
+st.write("Conclusion:")
+
+st.write("Student retention rate and student satisfaction rate could be driving department enrollment, as we can see a gradual increase for three out of the four departments.  Administration should examine why enrollment for Science has declined in the past five years.  There could be an issue with overall interest in the field by current and prospective students.  Administration could also examine the instructors, as well as other factors to determine student satisfaction.  The university could also prepare a specific survey for Science students to determine the root cause of enrollment decline. ")
 
 # PLOT 4
 # Create trends between departments, retention rates and satisfaction levels
@@ -126,6 +142,14 @@ ax5.set_ylabel("Satisfaction Score (Weighted)")
 ax5.set_title("Retention vs. Satisfaction by Department")
 st.pyplot(fig5)
 
+st.write("Department Comparison - Retention vs. Satisfaction:")
+
+st.write("Visualization compares weighted satisfactions scores vs. weighted retention scores for each department.  The default displays data for all years combined. Individual years can be examined, but the combined data provides a compelling narative.  We can determine that retention vs satisfaction for Engineering is much higher than any of the other departments.  Business and Arts are within 5% of each other, but 8 to 12% lower than Engineering.  The low point was achieved by the Science department, 14%.  Filters apply to the plot.")
+
+st.write("Conclusion:")
+
+st.write("The low point of 14% achieved by the Science department reinforces prior conclusions.  University administration should examine why the Science values are low, but also examine why Engineering is so much higher.  What is the Engineering department doing right, and can those policies/procedures then be applied to the Science department?")
+
 # PLOT 5
 # Create Comparison between Spring vs Fall term trends
 
@@ -152,3 +176,21 @@ ax.tick_params(axis='x', rotation=45)
 
 # Display in Streamlit
 st.pyplot(fig4)
+
+st.write("Spring vs Fall Enrollment Over Time:")
+
+st.write("Visualization displays the enrollment trends by term.  The bar chart displays data by year and term.  We can determine that in all years examined, enrollment is consistent between the Fall and Spring terms.  It should be noted that the filters do not apply to this plot.")
+
+st.write("Conclusion:")
+
+st.write("Enrollment has been steadily increasing over the ten year period.  The low point in 2015 with 600 students per term, and a high point in 2024 with 800 students per term.  The total number of students enrolled is increasing, but as we can determine from other plots, enrollment is not spread evenly across all departments.  ")
+
+st.subheader("Overall conclusion:")
+
+st.write("Overall retention rates and student satisfaction rates are increasing.")
+
+st.write("Science may be underperforming compared to the other three departments.")
+
+st.write("Enrollment is increasing, but Engineering appears to be driving the increase.")
+
+st.write("Administration should review policies and procedures in an effort to increase rentition and enrollment.")

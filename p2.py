@@ -5,6 +5,9 @@ import seaborn as sns
 
 # Label Dashboard and configure layout
 st.title("Test 1, Problem 2")
+
+st.write("An academic institution wants to monitor their admission process and students' satisfaction.  Design a university dashboard that tracks student admissions, retention, and satisfaction. Metrics and Key Performance Indicators (KPIs) were developed to assist the university.")
+
 st.title("University Student Dashboard")
 
 # Load the provided CSV for problem 2

@@ -64,9 +64,18 @@ st.pyplot(fig3)
 # Create Comparison between Spring vs Fall term trends
 if selected_term == 'All':
     st.subheader("Spring vs Fall Enrollment Over Time")
+
+    # Normalize term values
+    filtered_df['Term'] = filtered_df['Term'].str.strip().str.capitalize()
+
+    # Group and plot
     term_trend = filtered_df.groupby(['Year', 'Term'])['Enrolled'].sum().reset_index()
+
     fig4, ax4 = plt.subplots(figsize=(10, 4))
     sns.lineplot(data=term_trend, x='Year', y='Enrolled', hue='Term', marker='o', ax=ax4)
+    ax4.set_title("Enrollment Trends by Term")
+    ax4.set_ylabel("Enrolled Students")
+    ax4.set_xlabel("Year")
     st.pyplot(fig4)
 
 # Create trends between departments, retention rates and satisfaction levels

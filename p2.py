@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Label Dashboard and configure layout
-st.title("Test 2, Problem 2")
+st.title("Test 1, Problem 2")
 st.title("University Student Dashboard")
 
 # Load the provided CSV for problem 2

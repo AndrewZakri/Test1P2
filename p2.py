@@ -72,18 +72,40 @@ if selected_term == 'All':
 # Create trends between departments, retention rates and satisfaction levels
 st.subheader("Departmental Comparison: Retention vs. Satisfaction")
 
-dept_comp = pd.DataFrame({
-    'Department': ['Engineering', 'Business', 'Arts', 'Science'],
-    'Avg_Retention': [
-        filtered_df['Engineering_Enrolled'].sum() / filtered_df['Enrolled'].sum() * filtered_df['Retention_Rate_(%)'].mean()
-        for _ in range(4)],
-    'Avg_Satisfaction': [
-        filtered_df['Engineering_Enrolled'].sum() / filtered_df['Enrolled'].sum() * filtered_df['Student_Satisfaction_(%)'].mean()
-        for _ in range(4)]
-})
+departments = ['Engineering', 'Business', 'Arts', 'Science']
+dept_data = []
 
+for dept in departments:
+    enrolled_col = f"{dept}_Enrolled"
+    
+    if enrolled_col in filtered_df.columns:
+        dept_enrolled = filtered_df[enrolled_col].sum()
+        total_enrolled = filtered_df['Enrolled'].sum()
+        
+        weight = dept_enrolled / total_enrolled if total_enrolled else 0
+        avg_retention = weight * filtered_df['Retention_Rate_(%)'].mean()
+        avg_satisfaction = weight * filtered_df['Student_Satisfaction_(%)'].mean()
+        
+        dept_data.append({
+            'Department': dept,
+            'Avg_Retention': avg_retention,
+            'Avg_Satisfaction': avg_satisfaction
+        })
+
+# Convert to DataFrame
+dept_comp = pd.DataFrame(dept_data)
+
+# Scatter plot
 fig5, ax5 = plt.subplots(figsize=(6, 6))
-sns.scatterplot(data=dept_comp, x='Avg_Retention', y='Avg_Satisfaction', hue='Department', s=150, ax=ax5)
+sns.scatterplot(
+    data=dept_comp, 
+    x='Avg_Retention', 
+    y='Avg_Satisfaction', 
+    hue='Department', 
+    s=150, 
+    ax=ax5
+)
 ax5.set_xlabel("Retention Score (Weighted)")
 ax5.set_ylabel("Satisfaction Score (Weighted)")
+ax5.set_title("Retention vs. Satisfaction by Department")
 st.pyplot(fig5)
